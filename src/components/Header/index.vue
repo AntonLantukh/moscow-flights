@@ -5,11 +5,12 @@
               <img class="header__logo" :src="pathLogo" alt="logo">
           </div>
           <nav class="header__navigation">
-              <ul>
-                  <li>Вылеты</li>
-                  <li>Прилеты</li>
-                  <li>Задержанные рейсы</li>
-                  <li>Поиск по рейсу</li>
+              <ul class="header__navigation_wrapper">
+                  <li class="header__navigation_item" @click="onClickHandler"
+                  >
+                      Вылеты
+                  </li>
+                  <li class="header__navigation_item">Прилеты</li>
               </ul>
           </nav>
       </div>
@@ -17,53 +18,78 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+    import { mapActions } from 'vuex'
 
-  export default {
+    export default {
     name: 'Main-header',
 
     data() {
-      return {
-        pathLogo: './src/assets/logo.png',
-      }
+        return {
+            pathLogo: './logo.png',
+            airports: {
+                Шереметьево: 'SVO',
+                Домодедово: 'DME',
+                Внуково: 'VKO',
+                Жуковский: 'ZIA',
+            }
+        }
     },
 
-    computed: {
-      ...mapGetters([
-        'getTotalCount', 'getTotalSum'
-      ])
+    methods: {
+        ...mapActions({
+            fetchDepartureFlights: 'FETCH_DEPARTURE_FLIGHTS',
+            fetchArrivalFlights: 'FETCH_ARRIVAL_FLIGHTS'
+        }),
+
+        onClickHandler() {
+            this.fetchDepartureFlights({ airport: 'dme', date: '2019-01-25' })
+        }
     }
   }
 </script>
 
-<style scoped>
+<style lang="scss">
   .header {
       width: 100%;
       margin-bottom: 30px;
-      background-color: rgb(187, 225, 255);
-  }
 
-  .header__container {
-      margin: 0 auto 0 auto;
-      vertical-align: center;
-  }
+      &__container {
+          display: flex;
+          align-items: center;
+          width: 520px;
+          margin: 0 auto 0 auto;
+      }
 
-  .header__navigation {
-      padding-top: 10px;
-  }
+      &__navigation_wrapper {
+          display: flex;
+          padding: 0;
+          list-style: none;
+      }
 
-  h3 {
-      margin: 0;
-  }
+      &__navigation_item {
+          padding: 20px;
+          font-size: 32px;
+          line-height: 38px;
 
-  .header__logo {
-      width: 190px;
-      height: 60px;
-  }
+          &:nth-child(1) {
+              position: relative;
+              margin-right: 25px;
 
-  span {
-      display: block;
-      margin-left: 20px;
-  }
+              &::after {
+                  position: absolute;
+                  top: 5px;
+                  right: -20px;
+                  content: '';
+                  height: 70px;
+                  width: 1px;
+                  background-color: black;
+              }
+          }
+      }
 
+      &__logo {
+          width: 120px;
+          height: 60px;
+      }
+  }
 </style>
