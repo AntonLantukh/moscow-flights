@@ -1,6 +1,7 @@
 <template>
   <div class="header">
       <div class="header__container">
+          <h1>Яндекс Москва. Полёты</h1>
           <div>
               <img class="header__logo" :src="pathLogo" alt="logo">
           </div>
@@ -55,8 +56,9 @@
 
       &__container {
           display: flex;
+          justify-content: space-around;
           align-items: center;
-          width: 520px;
+          width: 1136px;
           margin: 0 auto 0 auto;
       }
 

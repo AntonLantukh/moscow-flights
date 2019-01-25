@@ -1,14 +1,14 @@
-import Main from '../components/Main'
+import Flights from '../components/Flights'
 
 const routes = [
   {
-    path: '/main',
-    component: Main,
-    name: 'main'
+    path: '/flights',
+    component: Flights,
+    name: 'flights'
   },
   {
     path: '/',
-    redirect: '/main',
+    redirect: '/flights',
   }
 ];
 

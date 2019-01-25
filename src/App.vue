@@ -7,14 +7,14 @@
 </template>
 
 <script>
-    import mainHeader from './components/Header';
-    import mainFooter from './components/Footer';
+    import MainHeader from './components/Header';
+    import MainFooter from './components/Footer';
 
     export default {
         name: 'app',
         components: {
-            mainHeader,
-            mainFooter,
+            MainHeader,
+            MainFooter,
         }
     }
 </script>
