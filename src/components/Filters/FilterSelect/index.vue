@@ -1,13 +1,18 @@
 <template>
-    <div class="filter-select">
+    <div
+        class="filter-select"
+        ref="dropdown"
+    >
         <button
             class="filter-select__title"
-            v-show="showSelect"
             @click="onSelectClickHandler"
         >
-            {{ placeholder }}
+            {{ selectedItem || selectPlaceholder }}
         </button>
-        <ul class="filter-select__list">
+        <ul
+            class="filter-select__list"
+            v-show="showSelect"
+        >
             <li
                 class="filter-select__item"
                 v-for="(item, key, index) in items"
@@ -30,7 +35,7 @@
                 default: () => {},
             },
 
-            placeholder: {
+            selectPlaceholder: {
                 type: String,
                 default: '',
             }
@@ -39,6 +44,7 @@
         data() {
             return {
                 showSelect: false,
+                selectedItem: '',
             }
         },
 
@@ -48,9 +54,26 @@
             },
 
             onListItemClickHandler(value) {
+                this.selectedItem = this.items[value];
                 this.$emit('option-selected', value)
-            }
-        }
+            },
+
+            documentClick(e){
+                let el = this.$refs.dropdown;
+                let target = e.target;
+                if (el !== target && !el.contains(target)) {
+                  this.showSelect=false;
+                }
+            },
+        },
+
+        created () {
+            document.addEventListener('click', this.documentClick)
+        },
+
+        destroyed () {
+            document.removeEventListener('click', this.documentClick)
+        },
     }
 </script>
 
@@ -59,48 +82,49 @@
         width: 200px;
         font-size: 14px;
         display: inline-block;
+        position: relative;
 
         &__title {
+            width: 230px;
             height: 20px;
-            border: 2px groove #ADD8E6;
-            background: white;
-            width: 200px;
+            padding: 18px;
             box-sizing: border-box;
-            padding: 2px;
-            line-height: 14px;
-            cursor: pointer;
+            font-family: 'Roboto Regular', 'Arial', sans-serif;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            line-height: 0;
             text-align: left;
+            border: 1px dashed black;
+            background: white;
+            cursor: pointer;
         }
 
         &__list {
+            position: absolute;
             list-style: none;
             margin: 0;
             padding: 0;
-            display: none;
-            position: absolute;
             z-index: 1000;
             background: white;
-            width: 200px;
-            border-bottom: 1px solid #add8e6;
-            border-left: 1px solid #add8e6;
-            border-right: 1px solid #add8e6;
+            width: 230px;
+            border-right: 1px dashed black;
+            border-left: 1px dashed black;
+            border-bottom: 1px dashed black;
             box-sizing: border-box;
-
-            &-open {
-                display: block;
-            }
         }
 
         &__item {
-            padding: 5px;
+            padding: 18px;
+            font-size: 14px;
+            line-height: 0;
             cursor: pointer;
 
             &:nth-child(even) {
-                background-color: #f0f8ff;
+                background-color: rgba(69, 69, 69, 0.1);
             }
 
             &:hover {
-                background-color: #7fffd4;
+                background-color: rgba(69, 69, 69, 0.3);
             }
         }
     }

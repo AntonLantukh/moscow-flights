@@ -37,9 +37,9 @@
         }
 
         &__wrapper {
-            width: 560px;
+            width: 700px;
             height: 50px;
-            margin: 0 auto 15px 0;
+            margin: 0 auto 10px auto;
             padding: 0 50px;
             display: flex;
             justify-content: space-between;
@@ -48,8 +48,8 @@
             vertical-align: center;
 
             p {
-                font-size: 24px;
-                line-height: 28px;
+                font-size: 18px;
+                line-height: 22px;
             }
         }
     }

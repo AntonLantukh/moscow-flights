@@ -6,6 +6,8 @@ import App from './App.vue';
 import routes from './routes';
 import vuexStore from './store';
 
+import '../public/css/main.css';
+
 Vue.use(Vuex);
 Vue.use(VueRouter);
 

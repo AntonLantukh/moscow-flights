@@ -1,17 +1,18 @@
 <template>
   <div class="header">
       <div class="header__container">
-          <h1>Яндекс Москва. Полёты</h1>
+          <h1 class="header__title">Яндекс Москва. Полёты</h1>
           <div>
               <img class="header__logo" :src="pathLogo" alt="logo">
           </div>
           <nav class="header__navigation">
               <ul class="header__navigation_wrapper">
-                  <li class="header__navigation_item" @click="onClickHandler"
-                  >
+                  <li class="header__navigation_item" @click="onClickHandler">
                       Вылеты
                   </li>
-                  <li class="header__navigation_item">Прилеты</li>
+                  <li class="header__navigation_item">
+                      Прилеты
+                  </li>
               </ul>
           </nav>
       </div>
@@ -19,33 +20,14 @@
 </template>
 
 <script>
-    import { mapActions } from 'vuex'
-
     export default {
-    name: 'Main-header',
+    name: 'Main-Header',
 
     data() {
         return {
-            pathLogo: './logo.png',
-            airports: {
-                Шереметьево: 'SVO',
-                Домодедово: 'DME',
-                Внуково: 'VKO',
-                Жуковский: 'ZIA',
-            }
+            pathLogo: './img/logo.png',
         }
     },
-
-    methods: {
-        ...mapActions({
-            fetchDepartureFlights: 'FETCH_DEPARTURE_FLIGHTS',
-            fetchArrivalFlights: 'FETCH_ARRIVAL_FLIGHTS'
-        }),
-
-        onClickHandler() {
-            this.fetchDepartureFlights({ airport: 'dme', date: '2019-01-25' })
-        }
-    }
   }
 </script>
 
@@ -62,29 +44,44 @@
           margin: 0 auto 0 auto;
       }
 
-      &__navigation_wrapper {
-          display: flex;
-          padding: 0;
-          list-style: none;
+      &__title {
+          font-family: 'Roboto Regular', sans-serif;
       }
 
-      &__navigation_item {
-          padding: 20px;
-          font-size: 32px;
-          line-height: 38px;
+      &__navigation {
+          height: 80px;
+          box-sizing: border-box;
 
-          &:nth-child(1) {
-              position: relative;
-              margin-right: 25px;
+          &_wrapper {
+              display: flex;
+              padding: 0;
+              list-style: none;
+          }
 
-              &::after {
-                  position: absolute;
-                  top: 5px;
-                  right: -20px;
-                  content: '';
-                  height: 70px;
-                  width: 1px;
-                  background-color: black;
+          &_item {
+              padding: 20px 0;
+              margin: 0 20px;
+              font-size: 32px;
+              line-height: 17px;
+              cursor: pointer;
+
+              &:nth-child(1) {
+                  position: relative;
+                  margin-right: 25px;
+
+                  &::after {
+                      position: absolute;
+                      top: -6px;
+                      right: -24px;
+                      content: '';
+                      height: 70px;
+                      width: 1px;
+                      background-color: black;
+                  }
+              }
+
+              &:hover {
+                  border-bottom: 1px dashed black;
               }
           }
       }
