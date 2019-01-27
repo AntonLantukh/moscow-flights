@@ -17,7 +17,7 @@
                     @day-change="onDayChangeHandler"
                     @fetch-request="onFetchRequest"
               />
-              <div class="page-body__search">
+              <div :class="['page-body__search', {'page-body__search-disable': !items.length}]">
                   <span class="page-body__label">
                       Поиск
                   </span>
@@ -238,7 +238,7 @@
                 &::after {
                     position: absolute;
                     top: 25%;
-                    left: 50%;
+                    left: calc(50% - 32px);
                     display: block;
                     width: 64px;
                     height: 64px;
@@ -251,7 +251,22 @@
         }
 
         &__search {
+            position: relative;
             margin-bottom: 20px;
+
+            &-disable {
+                &::before {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    content: '';
+                    background-color: rgba(255, 255, 255, 0.7);
+                    z-index: 3;
+                }
+            }
         }
 
         &__label {
@@ -275,7 +290,7 @@
             z-index: 50;
 
             @media (max-width: 400px) {
-                position: static;
+                position: relative;
             }
 
             &-loading {
@@ -294,10 +309,19 @@
 
             &_early {
                 left: 50px;
+
+                @media (max-width: 400px) {
+                    left: 0;
+                    margin-bottom: 20px;
+                }
             }
 
             &_late {
                 right: 50px;
+
+                @media (max-width: 400px) {
+                    right: 0;
+                }
             }
         }
   }
