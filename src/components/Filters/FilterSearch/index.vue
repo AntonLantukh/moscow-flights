@@ -4,14 +4,8 @@
             type="text"
             class="filter-search__input"
             :placeholder="searchPlaceholder"
-            ref="input"
+            @input="onInputSearchHandler($event)"
         >
-        <button
-            class="filter-search__button"
-            @click="onInputSearchHandler"
-        >
-          Искать
-        </button>
     </div>
 </template>
 
@@ -33,8 +27,8 @@
         },
 
         methods: {
-            onInputSearchHandler() {
-                this.$emit('search-input', this.$refs.input.value)
+            onInputSearchHandler(evt) {
+                this.$emit('search-input', evt.target.value)
             }
         }
     }
@@ -66,24 +60,6 @@
             @media (max-width: 400px) {
                 min-width: 100%;
                 margin-bottom: 20px;
-            }
-        }
-
-        &__button {
-            display: block;
-            width: 150px;
-            margin-left: 15px;
-            padding: 10px 40px;
-            font-family: 'Roboto Regular', 'Arial', sans-serif;
-            font-size: 14px;
-            background-color: rgb(255, 219, 77);
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-
-            @media (max-width: 400px) {
-                margin-left: auto;
-                width: 100%;
             }
         }
     }
