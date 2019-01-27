@@ -2,7 +2,7 @@ import Body from '../components/Body'
 
 const routes = [
   {
-    path: '/',
+    path: '*',
     component: Body,
     name: 'body'
   },
