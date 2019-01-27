@@ -42,32 +42,34 @@
 
 <style lang="scss">
     .filter-search {
-        width: 200px;
         font-size: 14px;
         display: flex;
-        align-items: center;
+        align-items: baseline;
 
         &__input {
-            width: 230px;
+            min-width: 360px;
             height: 20px;
             padding: 18px;
             font-family: 'Roboto Regular', 'Arial', sans-serif;
             font-size: 14px;
             line-height: 0;
             box-sizing: border-box;
-            border: 1px dashed black;
+            border: 1px solid rgb(255, 219, 77);
             background: white;
             cursor: pointer;
             text-align: left;
         }
 
         &__button {
-            padding: 12px;
-            width: 100px;
+            display: block;
+            width: 150px;
             margin-left: 15px;
+            padding: 10px 40px;
             font-family: 'Roboto Regular', 'Arial', sans-serif;
-            background-color: rgba(0, 0, 0, 0.1);
-            border: 1px dashed black;
+            font-size: 14px;
+            background-color: rgb(255, 219, 77);
+            border: none;
+            border-radius: 2px;
             cursor: pointer;
         }
     }

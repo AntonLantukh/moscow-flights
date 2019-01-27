@@ -18,6 +18,6 @@ p, h1, h2 {
     margin: 0;
 }
 
-p, li {
+p, li, span {
     font-family: 'Roboto Regular', 'Arial', sans-serif;
 }

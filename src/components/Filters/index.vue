@@ -2,36 +2,52 @@
     <div class="filters">
         <div class="filters__container">
             <filter-select
+                class="filters__filter"
+                :items="selectFlightTypeData"
+                :selectPlaceholder="selectTypePlaceholder"
+                :selectLabel="selectTypeLabel"
+                @option-selected="onTypeSelectHandler"
+            />
+            <filter-select
+                class="filters__filter"
                 :items="selectAirportData"
                 :selectPlaceholder="selectAirportPlaceholder"
+                :selectLabel="selectAirportLabel"
                 @option-selected="onAirportSelectHandler"
             />
             <filter-select
+                class="filters__filter"
                 :items="selectDaysData"
                 :selectPlaceholder="selectDaysPlaceholder"
+                :selectLabel="selectDaysLabel"
                 @option-selected="onDaysSelectHandler"
             />
-            <filter-search
-                :searchPlaceholder="inputSearchPlaceholder"
-                @search-input="onItemSearchHandler"
-            />
+            <button
+                class="filters__search-button"
+                @click="onGlobalSearchClickHandler"
+            >
+                Найти
+            </button>
         </div>
     </div>
 </template>
 
 <script>
     import FilterSelect from './FilterSelect';
-    import FilterSearch from './FilterSearch';
 
     export default {
         name: 'Filters',
 
         components: {
             FilterSelect,
-            FilterSearch,
         },
 
         props: {
+            selectTypePlaceholder: {
+                type: String,
+                default: '',
+            },
+
             selectDaysPlaceholder: {
                 type: String,
                 default: '',
@@ -42,9 +58,24 @@
                 default: '',
             },
 
-            inputSearchPlaceholder: {
+            selectTypeLabel: {
                 type: String,
                 default: '',
+            },
+
+            selectDaysLabel: {
+                type: String,
+                default: '',
+            },
+
+            selectAirportLabel: {
+                type: String,
+                default: '',
+            },
+
+            selectFlightTypeData: {
+                type: Object,
+                default: () => {},
             },
 
             selectAirportData: {
@@ -59,6 +90,10 @@
         },
 
         methods: {
+            onTypeSelectHandler(evt) {
+                this.$emit('type-change', evt)
+            },
+
             onAirportSelectHandler(evt) {
                 this.$emit('airport-change', evt)
             },
@@ -67,23 +102,39 @@
                 this.$emit('day-change', evt)
             },
 
-            onItemSearchHandler(evt) {
-                this.$emit('search-change', evt)
-            },
+            onGlobalSearchClickHandler() {
+                this.$emit('fetch-request')
+            }
         },
     }
 </script>
 
 <style lang="scss">
     .filters {
-        width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
+
+        &__filter {
+            margin-right: 20px;
+        }
 
         &__container {
             display: flex;
-            justify-content: space-between;
-            width: 800px;
-            margin: 0 auto;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        &__search-button {
+            display: block;
+            width: 150px;
+            margin-top: 10px;
+            padding: 10px 40px;
+            font-family: 'Roboto Regular', 'Arial', sans-serif;
+            font-size: 14px;
+            background-color: rgb(255, 219, 77);
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
         }
 
     }

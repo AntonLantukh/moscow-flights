@@ -1,10 +1,13 @@
 <template>
     <div
         class="filter-select"
-        ref="dropdown"
     >
+        <span class="filter-select__label">
+            {{ selectLabel }}
+        </span>
         <button
             class="filter-select__title"
+            ref="dropdown"
             @click="onSelectClickHandler"
         >
             {{ selectedItem || selectPlaceholder }}
@@ -33,6 +36,11 @@
             items: {
                 type: Object,
                 default: () => {},
+            },
+
+            selectLabel: {
+                type: String,
+                default: '',
             },
 
             selectPlaceholder: {
@@ -81,35 +89,41 @@
     .filter-select {
         width: 200px;
         font-size: 14px;
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
         position: relative;
 
+        &__label {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
         &__title {
-            width: 230px;
+            width: 200px;
             height: 20px;
             padding: 18px;
             box-sizing: border-box;
             font-family: 'Roboto Regular', 'Arial', sans-serif;
             font-size: 14px;
-            color: rgba(0, 0, 0, 0.6);
             line-height: 0;
             text-align: left;
-            border: 1px dashed black;
+            border: 1px solid rgb(255, 219, 77);
             background: white;
             cursor: pointer;
         }
 
         &__list {
             position: absolute;
+            top: 64px;
             list-style: none;
             margin: 0;
             padding: 0;
-            z-index: 1000;
+            z-index: 5;
             background: white;
-            width: 230px;
-            border-right: 1px dashed black;
-            border-left: 1px dashed black;
-            border-bottom: 1px dashed black;
+            width: 200px;
+            border-right: 1px solid rgb(255, 219, 77);
+            border-left: 1px solid rgb(255, 219, 77);
+            border-bottom: 1px solid rgb(255, 219, 77);
             box-sizing: border-box;
         }
 
@@ -120,11 +134,11 @@
             cursor: pointer;
 
             &:nth-child(even) {
-                background-color: rgba(69, 69, 69, 0.1);
+                background-color: rgb(250, 248, 242);
             }
 
             &:hover {
-                background-color: rgba(69, 69, 69, 0.3);
+                background-color: rgb(255, 235, 160);
             }
         }
     }

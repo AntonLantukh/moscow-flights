@@ -1,35 +1,43 @@
 <template>
-    <div class="flight-info">
-        <div class="flight-info__container">
-            <div class="flight-info__wrapper">
-                 <p>00:05 26 января</p>
-                 <p>Орск</p>
-                 <p>EO 563</p>
-            </div>
-            <div class="flight-info__wrapper">
-                <p>00:05 26 января</p>
-                <p>Орск</p>
-                <p>EO 563</p>
-            </div>
-            <div class="flight-info__wrapper">
-                <p>00:05 26 января</p>
-                <p>Орск</p>
-                <p>EO 563</p>
+    <transition name="fade">>
+        <div class="flight-info">
+            <div class="flight-info__container">
+                <div class="flight-info__wrapper">
+                    <p class="flight-info__param flight-info__param_time">{{ item.time }}</p>
+                    <p class="flight-info__param flight-info__param_target">{{ item.target }}</p>
+                    <p class="flight-info__param flight-info__param_carrier">{{ item.carrier }}</p>
+                    <p class="flight-info__param flight-info__param_vehicle">{{ item.vehicle }}</p>
+                    <p class="flight-info__param flight-info__param_number">{{ item.number }}</p>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
     export default {
         name: 'FlightInfo',
+
+        props: {
+            item: {
+                type: Object,
+                default: () => {},
+            },
+        },
     }
 </script>
 
 <style lang="scss">
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 1s;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+
     .flight-info {
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
 
         &__container {
             display: flex;
@@ -37,19 +45,40 @@
         }
 
         &__wrapper {
-            width: 700px;
-            height: 50px;
+            width: 712px;
             margin: 0 auto 10px auto;
-            padding: 0 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid black;
+            padding: 20px 50px;
+            border: 1px solid rgb(255, 219, 77);
+            background-color: rgb(248, 248, 248);
             vertical-align: center;
+        }
 
-            p {
+        &__param {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 14px;
+
+
+            &_time {
+                width: 100px;
+                font-size: 20px;
+            }
+
+            &_target {
+                width: 200px;
+            }
+
+            &_carrier {
+                width: 150px;
+            }
+
+            &_vehicle {
+                width: 170px;
+            }
+
+            &_number {
+                width: auto;
                 font-size: 18px;
-                line-height: 22px;
             }
         }
     }

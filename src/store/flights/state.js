@@ -1,5 +1,7 @@
 export default {
     isFetching: false,
-    arrival: {},
-    departure: {},
+    flights: {
+        arrival: {},
+        departure: {},
+    },
 }

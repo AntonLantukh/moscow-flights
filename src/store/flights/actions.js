@@ -1,9 +1,9 @@
 import { fetchFlights } from '../../api'
 
 export default {
-    FETCH_FLIGHTS: ({ commit }, { type, airport, date }) => {
+    FETCH_FLIGHTS: ({ commit }, { type, airport, date, offset }) => {
         commit('SET_IS_FETCHING');
-        fetchFlights(type, airport, date)
+        return fetchFlights(type, airport, date, offset)
             .then(response => {
                 const data = response.data;
 
