@@ -128,8 +128,18 @@
                     return false
                 }
 
-                const offset = this.flights[this.selectedType][this.selectedAirport][this.selectedDay].offset;
-                const total = this.flights[this.selectedType][this.selectedAirport][this.selectedDay].total;
+                const offset =
+                    this.flights[this.selectedType] &&
+                    this.flights[this.selectedType][this.selectedAirport] &&
+                    this.flights[this.selectedType][this.selectedAirport][this.selectedDay] ?
+                        this.flights[this.selectedType][this.selectedAirport][this.selectedDay].offset : 0;
+
+                const total =
+                    this.flights[this.selectedType] &&
+                    this.flights[this.selectedType][this.selectedAirport] &&
+                    this.flights[this.selectedType][this.selectedAirport][this.selectedDay] ?
+                        this.flights[this.selectedType][this.selectedAirport][this.selectedDay].total : 0;
+
                 const diff = total - offset;
 
                 return diff > 50;
