@@ -115,6 +115,11 @@
 
         &__filter {
             margin-right: 20px;
+
+            @media (max-width: 400px) {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
         }
 
         &__container {
@@ -122,6 +127,10 @@
             flex-direction: row;
             justify-content: center;
             align-items: flex-end;
+
+            @media (max-width: 400px) {
+                flex-direction: column;
+            }
         }
 
         &__search-button {
@@ -135,6 +144,10 @@
             border: none;
             border-radius: 2px;
             cursor: pointer;
+
+            @media (max-width: 400px) {
+                width: 100%;
+            }
         }
 
     }

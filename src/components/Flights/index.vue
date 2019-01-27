@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import FlightInfo from '../FlightInfo';
+    import FlightInfo from './FlightInfo';
 
     export default {
         name: 'Flights',
@@ -65,6 +65,10 @@
 
 <style lang="scss">
     .flights {
-
+        @media (max-width: 400px) {
+            width: 100%;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
     }
 </style>

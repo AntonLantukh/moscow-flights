@@ -15,6 +15,7 @@ export default {
 
                 commit('SET_IS_FETCHED');
             })
+            // eslint-disable-next-line no-use-before-define
             .catch(error => console.error(error));
     },
 }

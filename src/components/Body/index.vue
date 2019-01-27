@@ -43,7 +43,7 @@
           Раньше
       </button>
       <button
-          :class="['page-body__button', 'page-body__button_early', {'page-body__button-loading': isFetching}]"
+          :class="['page-body__button', 'page-body__button_late', {'page-body__button-loading': isFetching}]"
           v-show="lateButtonAvailable"
           @click="onAddLateFetchRequest"
       >
@@ -210,9 +210,15 @@
         &__container {
             display: flex;
             flex-direction: column;
-            width: 1136px;
+            width: 814px;
             margin: 0 auto;
             padding: 20px 0;
+
+            @media (max-width: 400px) {
+                width: 100%;
+                padding: 20px 16px;
+                box-sizing: border-box;
+            }
         }
 
         &__wrapper {
@@ -245,7 +251,6 @@
         }
 
         &__search {
-            margin-left: 160px;
             margin-bottom: 20px;
         }
 
@@ -269,9 +274,15 @@
             cursor: pointer;
             z-index: 50;
 
+            @media (max-width: 400px) {
+                position: static;
+            }
+
             &-loading {
                 &::before {
                     position: absolute;
+                    top: 0;
+                    left: 0;
                     display: block;
                     width: 100%;
                     height: 100%;

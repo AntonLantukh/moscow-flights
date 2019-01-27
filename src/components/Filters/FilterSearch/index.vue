@@ -46,6 +46,10 @@
         display: flex;
         align-items: baseline;
 
+        @media (max-width: 400px) {
+            flex-direction: column;
+        }
+
         &__input {
             min-width: 360px;
             height: 20px;
@@ -58,6 +62,11 @@
             background: white;
             cursor: pointer;
             text-align: left;
+
+            @media (max-width: 400px) {
+                min-width: 100%;
+                margin-bottom: 20px;
+            }
         }
 
         &__button {
@@ -71,6 +80,11 @@
             border: none;
             border-radius: 2px;
             cursor: pointer;
+
+            @media (max-width: 400px) {
+                margin-left: auto;
+                width: 100%;
+            }
         }
     }
 </style>

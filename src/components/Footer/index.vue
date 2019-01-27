@@ -21,8 +21,14 @@
         &__container {
             width: 500px;
             margin: 0 0 0 auto;
-            padding: 15px;
+            padding: 20px;
             vertical-align: center;
+
+            @media (max-width: 400px) {
+                width: 100%;
+                padding: 20px 16px;
+                box-sizing: border-box;
+            }
 
             p {
                 font-size: 14px;

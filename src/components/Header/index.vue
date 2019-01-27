@@ -21,20 +21,35 @@
 <style lang="scss">
   .header {
       width: 100%;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
+
+      @media (max-width: 400px) {
+          margin-bottom: 5px;
+      }
 
       &__container {
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 1136px;
+          width: 814px;
           padding: 20px 0;
           margin: 0 auto 0 auto;
+
+          @media (max-width: 400px) {
+              width: 100%;
+              padding: 20px 16px;
+              box-sizing: border-box;
+          }
       }
 
       &__title {
           font-family: 'Roboto Regular', sans-serif;
           font-weight: 400;
+          font-size: 34px;
+
+          @media (max-width: 400px) {
+              font-size: 28px;
+          }
 
           &-red {
               color: rgb(230, 20, 0);;

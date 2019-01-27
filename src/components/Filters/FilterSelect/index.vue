@@ -93,6 +93,10 @@
         flex-direction: column;
         position: relative;
 
+        @media (max-width: 400px) {
+            width: 100%;
+        }
+
         &__label {
             margin-bottom: 5px;
             font-size: 16px;
@@ -110,6 +114,10 @@
             border: 1px solid rgb(255, 219, 77);
             background: white;
             cursor: pointer;
+
+            @media (max-width: 400px) {
+                width: 100%;
+            }
         }
 
         &__list {
@@ -125,6 +133,10 @@
             border-left: 1px solid rgb(255, 219, 77);
             border-bottom: 1px solid rgb(255, 219, 77);
             box-sizing: border-box;
+
+            @media (max-width: 400px) {
+                width: 100%;
+            }
         }
 
         &__item {
