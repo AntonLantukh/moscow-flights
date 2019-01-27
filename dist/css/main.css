@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Roboto Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/Roboto-Regular.woff2') format('woff2'),
+         url('/fonts/Roboto-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/Roboto-Medium.woff2') format('woff2'),
+         url('/fonts/Roboto-Medium.woff') format('woff');
+}
+
+p, h1, h2 {
+    margin: 0;
+}
+
+p, li, span {
+    font-family: 'Roboto Regular', 'Arial', sans-serif;
+}
