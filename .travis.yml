@@ -9,10 +9,10 @@ cache:
   - ~/.cache
 
 install:
-- yarn add
+- npm install
 
 script:
-- yarn build
+- npm build
 
 deploy:
   provider: heroku
