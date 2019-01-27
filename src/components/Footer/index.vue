@@ -15,7 +15,6 @@
 <style lang="scss">
     .footer {
         width: 100%;
-        margin-top: 30px;
         border-top: 1px solid rgb(221, 220, 218);
 
         &__container {
@@ -32,6 +31,7 @@
 
             p {
                 font-size: 14px;
+                line-height: 24px;
             }
         }
   }
