@@ -11,9 +11,7 @@ const sortDataFlight = (data, state, type) => {
         let flight = {};
 
         moment.locale('ru');
-        const time = moment(item[type]).format('LT')
-
-        flight.time = time;
+        flight.time = moment(item[type]).format('LT');
         flight.target = item.thread.title;
         flight.carrier = item.thread.carrier.title;
         flight.vehicle = item.thread.vehicle;

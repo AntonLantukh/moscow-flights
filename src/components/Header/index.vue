@@ -1,20 +1,16 @@
 <template>
   <div class="header">
       <div class="header__container">
-          <h1 class="header__title"><span class="header__title-red">Я</span>ндекс Москва. Полёты</h1>
+          <h1 class="header__title">
+              <span class="header__title-red">Я</span>ндекс Москва. Полёты
+          </h1>
       </div>
   </div>
 </template>
 
 <script>
     export default {
-    name: 'Main-Header',
-
-    data() {
-        return {
-            pathLogo: './img/logo.png',
-        }
-    },
+        name: 'Main-Header',
   }
 </script>
 
@@ -43,10 +39,10 @@
       }
 
       &__title {
-          font-family: 'Roboto Regular', sans-serif;
-          font-weight: 400;
           font-size: 34px;
           line-height: 40px;
+          font-family: 'Roboto Regular', sans-serif;
+          font-weight: 400;
 
           &-red {
               color: rgb(230, 20, 0);;
