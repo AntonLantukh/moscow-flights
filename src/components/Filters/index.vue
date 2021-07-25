@@ -2,29 +2,29 @@
     <div class="filters">
         <div class="filters__container">
             <filter-select
-                class="filters__filter"
-                :items="selectFlightTypeData"
-                :selectPlaceholder="selectTypePlaceholder"
-                :selectLabel="selectTypeLabel"
-                @option-selected="onTypeSelectHandler"
+                    class="filters__filter"
+                    :items="selectFlightTypeData"
+                    :selectPlaceholder="selectTypePlaceholder"
+                    :selectLabel="selectTypeLabel"
+                    @option-selected="onTypeSelectHandler"
             />
             <filter-select
-                class="filters__filter"
-                :items="selectAirportData"
-                :selectPlaceholder="selectAirportPlaceholder"
-                :selectLabel="selectAirportLabel"
-                @option-selected="onAirportSelectHandler"
+                    class="filters__filter"
+                    :items="selectAirportData"
+                    :selectPlaceholder="selectAirportPlaceholder"
+                    :selectLabel="selectAirportLabel"
+                    @option-selected="onAirportSelectHandler"
             />
             <filter-select
-                class="filters__filter"
-                :items="selectDaysData"
-                :selectPlaceholder="selectDaysPlaceholder"
-                :selectLabel="selectDaysLabel"
-                @option-selected="onDaysSelectHandler"
+                    class="filters__filter"
+                    :items="selectDaysData"
+                    :selectPlaceholder="selectDaysPlaceholder"
+                    :selectLabel="selectDaysLabel"
+                    @option-selected="onDaysSelectHandler"
             />
             <button
-                class="filters__search-button"
-                @click="onGlobalSearchClickHandler"
+                    class="filters__search-button"
+                    @click="onGlobalSearchClickHandler"
             >
                 Найти
             </button>
@@ -75,17 +75,20 @@
 
             selectFlightTypeData: {
                 type: Object,
-                default: () => {},
+                default: () => {
+                },
             },
 
             selectAirportData: {
                 type: Object,
-                default: () => {},
+                default: () => {
+                },
             },
 
             selectDaysData: {
                 type: Object,
-                default: () => {},
+                default: () => {
+                },
             },
         },
 

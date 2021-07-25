@@ -1,62 +1,62 @@
 <template>
-  <div class="page-body">
-      <div :class="['page-body__wrapper', {'page-body__wrapper-loading': isFetching}]">
-          <div class="page-body__container">
-              <filters
-                    :selectTypePlaceholder="selectTypePlaceholder"
-                    :selectDaysPlaceholder="selectDaysPlaceholder"
-                    :selectAirportPlaceholder="selectAirportPlaceholder"
-                    :selectTypeLabel="selectTypeLabel"
-                    :selectDaysLabel="selectDaysLabel"
-                    :selectAirportLabel="selectAirportLabel"
-                    :selectFlightTypeData="selectFlightTypeData"
-                    :selectAirportData="selectAirportData"
-                    :selectDaysData="selectDaysData"
-                    @type-change="onTypeChangeHandler"
-                    @airport-change="onAirportChangeHandler"
-                    @day-change="onDayChangeHandler"
-                    @fetch-request="onFetchRequest"
-              />
-              <div :class="['page-body__search', {'page-body__search-disable': !items.length}]">
+    <div class="page-body">
+        <div :class="['page-body__wrapper', {'page-body__wrapper-loading': isFetching}]">
+            <div class="page-body__container">
+                <filters
+                        :selectTypePlaceholder="selectTypePlaceholder"
+                        :selectDaysPlaceholder="selectDaysPlaceholder"
+                        :selectAirportPlaceholder="selectAirportPlaceholder"
+                        :selectTypeLabel="selectTypeLabel"
+                        :selectDaysLabel="selectDaysLabel"
+                        :selectAirportLabel="selectAirportLabel"
+                        :selectFlightTypeData="selectFlightTypeData"
+                        :selectAirportData="selectAirportData"
+                        :selectDaysData="selectDaysData"
+                        @type-change="onTypeChangeHandler"
+                        @airport-change="onAirportChangeHandler"
+                        @day-change="onDayChangeHandler"
+                        @fetch-request="onFetchRequest"
+                />
+                <div :class="['page-body__search', {'page-body__search-disable': !items.length}]">
                   <span class="page-body__label">
                       Поиск
                   </span>
-                  <filter-search
-                      :searchPlaceholder="inputSearchPlaceholder"
-                      @search-input="onSearchChangeHandler"
-                  />
-              </div>
-          </div>
-      </div>
-      <flights
-          :flightType="selectedType"
-          :selectedAirport="selectedAirport"
-          :selectedDay="selectedDay"
-          :searchInput="searchInput"
-          :items="items"
-      />
-      <button
-          :class="['page-body__button', 'page-body__button_early', {'page-body__button-loading': isFetching}]"
-          v-show="earlyButtonAvailable"
-          @click="onAddEarlyFetchRequest"
-      >
-          Раньше
-      </button>
-      <button
-          :class="['page-body__button', 'page-body__button_late', {'page-body__button-loading': isFetching}]"
-          v-show="lateButtonAvailable"
-          @click="onAddLateFetchRequest"
-      >
-          Позже
-      </button>
-  </div>
+                    <filter-search
+                            :searchPlaceholder="inputSearchPlaceholder"
+                            @search-input="onSearchChangeHandler"
+                    />
+                </div>
+            </div>
+        </div>
+        <flights
+                :flightType="selectedType"
+                :selectedAirport="selectedAirport"
+                :selectedDay="selectedDay"
+                :searchInput="searchInput"
+                :items="items"
+        />
+        <button
+                :class="['page-body__button', 'page-body__button_early', {'page-body__button-loading': isFetching}]"
+                v-show="earlyButtonAvailable"
+                @click="onAddEarlyFetchRequest"
+        >
+            Раньше
+        </button>
+        <button
+                :class="['page-body__button', 'page-body__button_late', {'page-body__button-loading': isFetching}]"
+                v-show="lateButtonAvailable"
+                @click="onAddLateFetchRequest"
+        >
+            Позже
+        </button>
+    </div>
 </template>
 
 <script>
     import Flights from '../Flights';
     import Filters from '../Filters';
     import FilterSearch from '../Filters/FilterSearch';
-    import { mapActions, mapState } from 'vuex'
+    import {mapActions, mapState} from 'vuex'
     import moment from 'moment';
 
     export default {
@@ -106,7 +106,7 @@
                     yesterday: moment().add(-1, 'day').endOf('day').format('YYYY-MM-DD'),
                     today: moment().endOf('day').format('YYYY-MM-DD'),
                     tomorrow: moment().add(1, 'day').endOf('day').format('YYYY-MM-DD'),
-               }
+                }
             },
 
             earlyButtonAvailable() {
@@ -118,7 +118,7 @@
                     this.flights[this.selectedType] &&
                     this.flights[this.selectedType][this.selectedAirport] &&
                     this.flights[this.selectedType][this.selectedAirport][this.selectedDay] ?
-                     this.flights[this.selectedType][this.selectedAirport][this.selectedDay].offset : 0;
+                        this.flights[this.selectedType][this.selectedAirport][this.selectedDay].offset : 0;
 
                 return offset > 0;
             },
@@ -175,8 +175,8 @@
                     return;
                 }
 
-                this.fetchFlights({ type: this.selectedType, airport: this.selectedAirport, date: this.selectedDay })
-                    .then(() => this.items = this.flights[this.selectedType][this.selectedAirport][this.selectedDay].schedule );
+                this.fetchFlights({type: this.selectedType, airport: this.selectedAirport, date: this.selectedDay})
+                    .then(() => this.items = this.flights[this.selectedType][this.selectedAirport][this.selectedDay].schedule);
             },
 
             onAddEarlyFetchRequest() {
@@ -189,8 +189,13 @@
                     newOffset = offset - 50;
                 }
 
-                this.fetchFlights({ type: this.selectedType, airport: this.selectedAirport, date: this.selectedDay, offset: newOffset })
-                    .then(() => this.items = this.flights[this.selectedType][this.selectedAirport][this.selectedDay].schedule );
+                this.fetchFlights({
+                    type: this.selectedType,
+                    airport: this.selectedAirport,
+                    date: this.selectedDay,
+                    offset: newOffset
+                })
+                    .then(() => this.items = this.flights[this.selectedType][this.selectedAirport][this.selectedDay].schedule);
             },
 
             onAddLateFetchRequest() {
@@ -205,8 +210,13 @@
                     newOffset = offset + 50;
                 }
 
-                this.fetchFlights({ type: this.selectedType, airport: this.selectedAirport, date: this.selectedDay, offset: newOffset })
-                    .then(() => this.items = this.flights[this.selectedType][this.selectedAirport][this.selectedDay].schedule );
+                this.fetchFlights({
+                    type: this.selectedType,
+                    airport: this.selectedAirport,
+                    date: this.selectedDay,
+                    offset: newOffset
+                })
+                    .then(() => this.items = this.flights[this.selectedType][this.selectedAirport][this.selectedDay].schedule);
             },
         },
     }
@@ -334,5 +344,5 @@
                 }
             }
         }
-  }
+    }
 </style>

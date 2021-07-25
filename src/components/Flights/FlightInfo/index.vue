@@ -21,7 +21,8 @@
         props: {
             item: {
                 type: Object,
-                default: () => {},
+                default: () => {
+                },
             },
         },
     }
@@ -31,6 +32,7 @@
     .fade-enter-active, .fade-leave-active {
         transition: opacity 1s;
     }
+
     .fade-enter, .fade-leave-to {
         opacity: 0;
     }
